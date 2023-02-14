@@ -1,0 +1,28 @@
+{
+  "name": "backfirebase",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GENAIM88/BackFireBase.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GENAIM88/BackFireBase/issues"
+  },
+  "homepage": "https://github.com/GENAIM88/BackFireBase#readme",
+  "dependencies": {
+    "bcrypt": "^5.1.0",
+    "dotenv": "^16.0.3",
+    "express.js": "^1.0.0",
+    "firebase": "^9.17.1"
+  },
+  "devDependencies": {},
+  "keywords": [],
+  "description": ""
+}
