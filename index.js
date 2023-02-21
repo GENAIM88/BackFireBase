@@ -33,6 +33,56 @@ app.get('/usuarios', (req, res) =>{
     })
 })
 
+app.post('/usuarios', async (req, res) => {
+
+     const colRef = collection(db, 'users')
+     const docsSnap = await getDocs(colRef)
+     let data = []
+     
+     docsSnap.forEach(doc => {
+
+            data.push(doc.data())
+        }) 
+            res.json({
+                'alert': 'Success!!',data
+            })
+})
+
+app.post('/login', (req, res) =>{
+    let{ email, password } = req.body
+
+    if (!email.length || !password.length){
+        return res.json({
+            'alert': 'no se ha recibido correctamente'
+        })
+    }
+
+    const users = colecction(db, 'users')
+    getDoc(doc(users, email))
+    .then (user =>{
+        if (!user.exists()){
+            return res.json({
+                'alert': 'Correo no registrado'
+            })
+        }else{
+            bcrypt.compare(password, user.data().password, (error, result) => {
+                if (result){
+                    let data = user.data()
+                    res.json({
+                            'alert': 'Success',
+                            name: data.name,
+                            email: data.email
+                    })
+                }else{
+                    return res.json({
+                        'alert': 'Contraseña Incorrecta'
+                    })
+                }
+            })
+        }
+    })
+})
+
 app.post('/registro', (req, res) =>{
     const {name, lastname, email, password, number} = req.body 
         
